@@ -13,20 +13,45 @@ def build_note_dictionaries(note_names, add_octave_no=True):
 	midi_to_name = {}
 	name_to_midi = {}
 	# Pour chaque octave de 0 à 8 (inclus). On va générer tout l'octave 8, même si la dernière note du piano est Do 8
+	for octave in range(9):#parce que le 9 n'est pas inclus,mais le 8 oui.
 		# Pour chaque note de l'octave
+		for i in range(note_de_octave):
 			# Calculer le numéro MIDI de la note et ajouter aux deux dictionnaires
+		calcul_MIDI=C0_MIDI_NO+octave*note_de_octave+note
+		calcul_MIDI.append(midi_to_name)
+		calcul_MIDI.append(name_to_midi)
 			# Ajouter le numéro de l'octave au nom de la note si add_octave_no est vrai
+			if add_octave_no=True:
+				full_note_name=note_names+numero_octave
 			# Garder les numéros de notes dans name_to_midi entre 0 et 11 si add_octave_no est faux
+
+		if add_octave_no==False:
+
+
+
 	return midi_to_name, name_to_midi
 
+
 def build_print_note_name_callback(midi_to_name):
-	pass
+	# Fonction locale
+	# Soit message MIDI midi_msg, midi_msg.type donne le type, midi_msg.note donne la note
+
+	# Dans mon callback :
+	def callback(midi_msg):
+		if midi_msg.type=="note_on"and midi_msg.velocity>0:
+			print(midi_to_name[midi_msg.note])
+
 
 def build_print_chord_name_callback(chord_names_and_notes, name_to_midi):
 	# Construire le dictionnaire d'assocations entre état des notes et accord joué.
-	
+	#?????je comprends pas
+
+
 	# Créez et retourner le callback
-	pass
+	def callback(midi_msg):
+		if midi_msg.type =="note_on" and midi_msg.velocity>0:
+			........#????
+
 
 
 def main():
